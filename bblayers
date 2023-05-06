@@ -1,0 +1,28 @@
+# POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.conf
+# changes incompatibly
+POKY_BBLAYERS_CONF_VERSION = "2"
+
+BBPATH = "${TOPDIR}"
+BBFILES ?= ""
+
+BBLAYERS += " ${TOPDIR}/../sources/poky/meta"
+BBLAYERS += " ${TOPDIR}/../sources/meta-openembedded/meta-networking"
+BBLAYERS += " ${TOPDIR}/../sources/meta-openembedded/meta-python"
+BBLAYERS += " ${TOPDIR}/../sources/meta-oracle-java"
+BBLAYERS += " ${TOPDIR}/../sources/meta-mono"
+BBLAYERS += " ${TOPDIR}/../sources/meta-raspberrypi"
+BBLAYERS += " ${TOPDIR}/../sources/meta-openembedded/meta-oe"
+
+MACHINE ?= "raspberrypi3-64"
+
+CORE_IMAGE_EXTRA_INSTALL += "\
+       opencv \
+       opencv-samples \
+"
+DISTRO_FEATURES += " opengl"
+
+#IMAGE_INSTALL_append = " packagegroup-core-buildessential"
+
+#GCCVERSION = "8.%"
+#require ../../sources/meta-tegra/contrib/conf/include/gcc-compat.conf
+
